@@ -61,7 +61,7 @@ services:
   db:
     image: mysql:5.7.22
     container_name: db
-    command: --inodb-use-native-aio=0
+    command: --innodb-use-native-aio=0
     restart: unless-stopped
     tty: true
     ports:
