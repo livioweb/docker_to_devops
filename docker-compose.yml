@@ -19,8 +19,9 @@ services:
     networks:
       - app-network
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+      #db:
+      #  condition: service_healthy
 
   #Nginx Service
   webserver:
@@ -78,10 +79,10 @@ services:
       SERVICE_NAME: mysql
     networks:
       - app-network
-    healthcheck:
-      test: ["CMD-SHELL",'mysql -uroot --database=ms_devops --password=root  --execute="select count(table_name)>0 from information_schema.tables;" --skip-column-names -B']
-      interval: 10s
-      timeout: 10s
+    #healthcheck:
+    #  test: ["CMD-SHELL",'mysql -uroot --database=ms_devops --password=root  --execute="select count(table_name)>0 from information_schema.tables;" --skip-column-names -B']
+    #  interval: 10s
+    #  timeout: 10s
 #Docker Networks
 networks:
   app-network:
