@@ -9,6 +9,7 @@ services:
     container_name: app
     restart: unless-stopped
     tty: true
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s php-fpm
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
@@ -20,6 +21,7 @@ services:
       - app-network
     depends_on:
       - db
+      - redis
       #db:
       #  condition: service_healthy
 
