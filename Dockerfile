@@ -27,19 +27,6 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     wget
 
-RUN apt-get install -y apt-transport-https
-
-
-RUN cd /tmp && wget https://pecl.php.net/get/swoole-4.2.9.tgz && \
-    tar zxvf swoole-4.2.9.tgz && \
-    cd swoole-4.2.9  && \
-    phpize  && \
-    ./configure  --enable-openssl && \
-    make && make install
-
-RUN touch /usr/local/etc/php/conf.d/swoole.ini && \
-    echo 'extension=swoole.so' > /usr/local/etc/php/conf.d/swoole.ini
-
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 

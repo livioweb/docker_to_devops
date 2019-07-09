@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "8080:80"
+      - "8000:80"
       - "443:443"
     networks:
       - app-network
@@ -50,7 +50,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     ports:
-      - 8000:80
+      - 8001:80
     environment:
       - PMA_ARBITRARY=1
     networks:
@@ -61,7 +61,7 @@ services:
   db:
     image: mysql:5.7.22
     container_name: db
-    command: --inodb-use-native-aio=0
+    command: --innodb-use-native-aio=0
     restart: unless-stopped
     tty: true
     ports:
